@@ -1,0 +1,21 @@
+service: hello-service
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+
+functions:
+  hello:
+    handler: packages/lambda-function/src/handler.handler
+    events:
+      - http:
+          path: hello
+          method: get
+
+
+plugins:
+  - serverless-offline
+  - serverless-openapi-documentation
